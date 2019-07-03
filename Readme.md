@@ -7,6 +7,6 @@ NLP-Learning is a tutorial for me to studying NLP(Natural Language Processing) b
 
 ## 目录
 
-### 1.[统计语言模型](NNLM)
-### 2.[NNLM]()
+### 1.[统计语言模型](统计语言模型)
+### 2.[NNLM](NNML)
 ### 3.[Word2Vec]()
