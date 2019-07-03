@@ -1,7 +1,12 @@
 # NLP-Learning
 ![pytorch](https://camo.githubusercontent.com/28daa36807d1fdb943ea408df9274e03b5ec28cc/68747470733a2f2f6d656469612d7468756d62732e676f6c64656e2e636f6d2f4f4c717a6d726d77417a59315037536c32396b325439576a4a644d3d2f323030783230302f736d6172742f676f6c64656e2d73746f726167652d70726f64756374696f6e2e73332e616d617a6f6e6177732e636f6d2f746f7069635f696d616765732f65303839313461666131306134313739383933656562303763623565343731332e706e67)
 
-NLP-Learning is a note for me to studying NLP(Natural Language Processing) using Pytorch. Most of the models in NLP were implemented with less than 100 lines of code.(except comments or blank lines)
+NLP-Learning is a tutorial for me to studying NLP(Natural Language Processing) by using Pytorch. 
+
 [toc]
 
-## Representation
+## 目录
+
+### 1.统计语言模型
+### 2.NNLM
+### 3.Word2Vec
