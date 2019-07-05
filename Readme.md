@@ -6,7 +6,8 @@ NLP-Learning is a tutorial for me to studying NLP(Natural Language Processing) b
 
 
 ## 目录
-
+### 0.分词、词性、命名实体简介以及分词工具
+[介绍](ChineseWordSegmentation/Readme.md)
 ### 1.统计语言模型
 原理：[统计语言模型](统计语言模型/Readme.md)
 代码：[N-gram]()
