@@ -11,7 +11,7 @@ GloVe的全称叫（Global Vector for Word Representation），它是一个基�
   3. I enjoy flying.
   
 构建的共现矩阵如下图所示：
-  ![图像1](Glove/png/图像1.png)
+  ![图像1](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像1.png)
   
 但是如此构建共现矩阵，有以下问题
   1. 随着词汇增多，向量的大小会变得很大。
@@ -21,7 +21,7 @@ GloVe的全称叫（Global Vector for Word Representation），它是一个基�
 
 我们可以用svd（singular value decomposition，奇异值分解），如图2：
 
-![图像2](Glove/png/图像2.png)
+![图像2](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像2.png)
 
 奇异值类似主成分，在实际应用中，往往取top k个奇异值就能够表示绝大部分信息量，因此SVD经常拿来做损失较小的有损压缩：
 SVD的几何意义实际上是通过线性变换来找到最能表达矩阵信息的一组正交基，原1*n维词向量在取得top k 奇异值后，可以用1*k维向量来表示该word，进而实现word embedding的效果。
@@ -29,9 +29,9 @@ SVD的几何意义实际上是通过线性变换来找到最能表达矩阵信�
 
 SVD（奇异值分解）的简单python例子如下图图3。其中数据集依然是：1. I like deep learning. 2. I like NLP. 3. I enjoy flying. 。然后在图4中，输出U矩阵的前两为最大的单个值。
 
-![图像3](Glove/图像3)
+![图像3](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像3.png)
 
-![图像4](Glove/图像4)
+![图像4](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像4.png)
 
 将基于计数的和基于直接预测的两种word embedding方法对比：
 基于计数的方法的优点是： 
@@ -50,6 +50,7 @@ SVD（奇异值分解）的简单python例子如下图图3。其中数据集依�
   1. 需要大量的数据集。 
   2. 不能够充分利用统计信息。
 
+![图像5](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像5.png)
 以上两种方法都有优缺点，GloVe就是将两种方法的优点结合起来。
 
 ## 2.Glove如何实现
@@ -59,9 +60,8 @@ SVD（奇异值分解）的简单python例子如下图图3。其中数据集依�
 An apple a day keeps an apple a day
 设定滑动窗口为2，则中心词-背景词对有：
 
-![图像5](Glove/图像5)
-
-![图像6](Glove/图像6)
+![图像6](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像6.png)
+![图像7](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像7.png)
 
 设词表大小为V，共现矩阵将是一个V行V列的方阵，而第i行第j列的表示了以第i个中心词 ，第j个背景词j出现的次数。Xi,j表示wordj 出现在wordi周边的次数。
 
@@ -87,7 +87,7 @@ An apple a day keeps an apple a day
 
 如果𝒘_𝒋与𝒘_k不相关，且𝒘_i与𝒘_k不相关，那么这个比值将会趋近于1。
 
-![图像7](Glove/图像7)
+![图像8](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像8.png)
 
 3.假设我们已经得到词向量，然后我们用𝒘_𝒊 、 𝒘_𝒋 、 𝒘 ̃_𝒌通过某种函数计算〖𝒓𝒂𝒕𝒊𝒐〗_(𝒊,𝒋,𝒌)，能够得到相同的规律：
 
@@ -140,7 +140,7 @@ An apple a day keeps an apple a day
 𝒇(𝒙)={█(〖(𝒙/𝒙_𝒎𝒂𝒙)〗^𝜶,  𝒙<𝒙_𝒎𝒂𝒙@&𝟏  ,   𝒐𝒕𝒉𝒆𝒓𝒘𝒊𝒔𝒆)┤
 
 这篇论文中所有的实验，α取值为0.75， 𝒙_𝒎𝒂𝒙为100。
-![图像]()
+![图像9](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像9.png)
 
 ## 3.Glove如何训练
 
@@ -155,3 +155,9 @@ An apple a day keeps an apple a day
 采用AdaGrad的梯度下降算法方法迭代50次（非监督学习，无神经网络）
 
 ## 4.Glove与Word2Vec的区别和联系
+
+![图像10](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像10.png)
+![图像11](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像11.png)
+
+Word2Vec方法中最后一步的softmax后，我们希望其周边的词的概率越大越好，这体现在word2Vec的损失函数上面，没有考虑word_pairs之间的距离因素。word2Vec、glove都是在考虑了共现矩阵的基础上建立模型，只是word2Vec是一种预测型模型，而glove是基于计数的模型。
+
