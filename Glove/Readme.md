@@ -51,6 +51,7 @@ SVD（奇异值分解）的简单python例子如下图图3。其中数据集依�
   2. 不能够充分利用统计信息。
 
 ![图像5](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像5.png)
+
 以上两种方法都有优缺点，GloVe就是将两种方法的优点结合起来。
 
 ## 2.Glove如何实现
@@ -67,6 +68,7 @@ An apple a day keeps an apple a day
 
   2. 更新共现矩阵有：
 定义共现矩阵的第i行的和为：
+
 ![公式1](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式1.png)
 
 之后我们有条件概率，对第j列对应的词出现在第i行上下文中的条件概率为：
@@ -119,6 +121,7 @@ An apple a day keeps an apple a day
 ![公式9](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式9.png)
 
 这篇论文中所有的实验，α取值为0.75， 𝒙_𝒎𝒂𝒙为100。
+
 ![图像9](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像9.png)
 
 ## 3.Glove如何训练
