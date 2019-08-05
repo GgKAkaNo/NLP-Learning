@@ -67,12 +67,12 @@ An apple a day keeps an apple a day
 
   2. 更新共现矩阵有：
 定义共现矩阵的第i行的和为：
-
-𝑿_i= ∑_(𝒋=𝟏)^𝑽▒𝑿_(𝒊,𝒋) 
+![公式1](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式1.png)
 
 之后我们有条件概率，对第j列对应的词出现在第i行上下文中的条件概率为：
 
-  𝑷_(𝒊,𝒋)=𝑷(𝒋|𝒊)=  𝑿_(𝒊,𝒋)/𝑿_𝒊 
+ ![公式2](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式2.png)
+
 对于某个词w_𝒌,他在第i行或者第j行上下文出现的条件概率的比值为：
 
 𝑷_(𝒊,𝒌)/𝑷_(𝒋,𝒌) 
@@ -87,48 +87,26 @@ An apple a day keeps an apple a day
 
 如果𝒘_𝒋与𝒘_k不相关，且𝒘_i与𝒘_k不相关，那么这个比值将会趋近于1。
 
-![图像8](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像8.png)
+![公式3](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式3.png)
 
 3.假设我们已经得到词向量，然后我们用𝒘_𝒊 、 𝒘_𝒋 、 𝒘 ̃_𝒌通过某种函数计算〖𝒓𝒂𝒕𝒊𝒐〗_(𝒊,𝒋,𝒌)，能够得到相同的规律：
 
-𝑷_(𝒊,𝒌)/𝑷_(𝒋,𝒌) = 〖𝒓𝒂𝒕𝒊𝒐〗_(𝒊,𝒋,𝒌)=𝒈(𝒘_𝒊,𝒘_𝒋,𝒘 ̃_𝒌)
+![公式4](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式4.png)
 
 容易想到代价函数：
 
-𝑱= ∑_(𝒊,𝒋,𝒌)^𝑽▒〖(𝑷_(𝒊,𝒌)/𝑷_(𝒋,𝒌)   −𝒈(𝒘_𝒊,𝒘_𝒋,𝒘 ̃_𝒌))〗^𝟐 
+![公式5](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式5.png)
 
 我们的目标是以下公式尽可能成立：
 
-𝑷_(𝒊,𝒌)/𝑷_(𝒋,𝒌) =𝒆𝒙𝒑(〖(𝒘_𝒊−𝒘_𝒋)〗^𝑻 𝒘 ̃_𝒌)
+![公式6](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式6.png)
 
-𝑷_(𝒊,𝒌)/𝑷_(𝒋,𝒌) =(𝒆𝒙𝒑(𝒘_𝒊^𝑻 𝒘 ̃_𝒌))/(𝒆𝒙𝒑(𝒘_𝒋^𝑻 𝒘 ̃_𝒌))
-
-𝑷_(𝒊,𝒌)=𝒆𝒙𝒑(𝒘_𝒊^𝑻 𝒘 ̃_𝒌)
-
-𝑷_(𝒊,𝒋)=𝒆𝒙𝒑(𝒘_𝒊^𝑻 𝒘 ̃_𝒋)
-
-两边取对数：
-
-𝒍𝒐𝒈(𝑷_(𝒊,𝒋) )=𝒘_𝒊^𝑻 𝒘 ̃_𝒋
-
-代价函数就简化为：
-
-𝑱= ∑_(𝒊,𝒋,𝒌)^𝑽▒〖(𝒍𝒐𝒈(𝑷_(𝒊,𝒋) )−𝒘_𝒊^𝑻 𝒘 ̃_𝒋)〗^𝟐 
-
-出现的问题：
-
-𝒍𝒐𝒈(𝑷_(𝒊,𝒋) )≠𝒍𝒐𝒈 (𝑷_(𝒋,𝒊) ) 〖  𝒘〗_𝒊^𝑻 𝒘 ̃_𝒋 〖=𝒘〗_𝒋^𝑻 𝒘 ̃_𝒋
-
-将原式展开：
-
-𝒍𝒐𝒈(𝑿_(𝒊,𝒋) )−𝒍𝒐𝒈(𝑿_𝒊 )=𝒘_𝒊^𝑻 𝒘 ̃_𝒋
-
-𝒍𝒐𝒈(𝑿_(𝒊,𝒋) )=𝒘_𝒊^𝑻 𝒘 ̃_𝒋+ 𝒃_𝒊+ 𝒃 ̃_𝒋
-
-𝑱= ∑_(𝒊,𝒋)^𝑽▒〖(𝒘_𝒊^𝑻 𝒘 ̃_𝒋+𝒃_𝒊+𝒃 ̃_𝒋−𝒍𝒐𝒈(𝑿_(𝒊,𝒋)))〗^𝟐 
+![公式7](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式7.png)
 
 并不是所有词对都是平权的，添加权重项：
-𝑱= ∑_(𝒊,𝒋)^𝑽▒〖𝒇(𝑿_(𝒊,𝒋))〖(𝒘_𝒊^𝑻 𝒘 ̃_𝒋+𝒃_𝒊+𝒃 ̃_𝒋−𝒍𝒐𝒈(𝑿_(𝒊,𝒋)))〗^𝟐 〗
+
+![公式8](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式8.png)
+
 
 语料库中，肯定存在很多单词他们在一起出现的次数是很多的（frequent co-occurrences），那么我们希望：
 
@@ -137,7 +115,8 @@ An apple a day keeps an apple a day
   3. 两个单词没有一起出现过，即𝑿_(𝒊,𝒋)=𝟎，那么它们不应该参加代价函数计算中，f(0)=0
   
 满足以上的函数，论文中给出分段函数：
-𝒇(𝒙)={█(〖(𝒙/𝒙_𝒎𝒂𝒙)〗^𝜶,  𝒙<𝒙_𝒎𝒂𝒙@&𝟏  ,   𝒐𝒕𝒉𝒆𝒓𝒘𝒊𝒔𝒆)┤
+
+![公式9](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/公式9.png)
 
 这篇论文中所有的实验，α取值为0.75， 𝒙_𝒎𝒂𝒙为100。
 ![图像9](https://github.com/GgKAkaNo/NLP_tutorial/blob/master/Glove/png/图像9.png)
