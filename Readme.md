@@ -17,3 +17,5 @@ NLP-Learning is a tutorial for me to studying NLP(Natural Language Processing) b
 ### 3.Word2Vec
 原理：[Word2Vec](Word2Vec/Readme.md)
 代码：
+### 4.Glove
+原理：[Glove](Glove/Readme.md)
