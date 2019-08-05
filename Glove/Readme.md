@@ -11,7 +11,7 @@ GloVe的全称叫（Global Vector for Word Representation），它是一个基�
   3. I enjoy flying.
   
 构建的共现矩阵如下图所示：
-  ![图像1](Glove/图像1)
+  ![图像1](Glove/png/图像1.png)
   
 但是如此构建共现矩阵，有以下问题
   1. 随着词汇增多，向量的大小会变得很大。
@@ -21,7 +21,7 @@ GloVe的全称叫（Global Vector for Word Representation），它是一个基�
 
 我们可以用svd（singular value decomposition，奇异值分解），如图2：
 
-![图像2](Glove/图像2)
+![图像2](Glove/png/图像2.png)
 
 奇异值类似主成分，在实际应用中，往往取top k个奇异值就能够表示绝大部分信息量，因此SVD经常拿来做损失较小的有损压缩：
 SVD的几何意义实际上是通过线性变换来找到最能表达矩阵信息的一组正交基，原1*n维词向量在取得top k 奇异值后，可以用1*k维向量来表示该word，进而实现word embedding的效果。
